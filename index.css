@@ -1,0 +1,233 @@
+/* ============================================================
+   True Path Retreat — Custom Styles
+   Extends Tailwind with component classes and design tokens
+   Colors: bg=#0F0E0D, gold=#C9A96E, text=#F0EDE8
+============================================================ */
+
+/* ---- Smooth scroll (Tailwind's scroll-smooth class on <html> handles this; rule kept as fallback for no-JS) ---- */
+html { scroll-behavior: smooth; }
+
+/* ---- Section spacing ---- */
+.section-pad {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+@media (min-width: 768px) {
+  .section-pad {
+    padding-top: 9rem;
+    padding-bottom: 9rem;
+  }
+}
+
+/* ---- Typography helpers ---- */
+.eyebrow {
+  display: block;
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #C9A96E;
+}
+
+.section-heading {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 300;
+  line-height: 1.1;
+  color: #F0EDE8;
+  font-size: clamp(2.2rem, 6vw, 3.5rem);
+}
+
+.prose-body {
+  color: #9B9590;
+  line-height: 1.75;
+  font-size: 0.975rem;
+}
+
+/* ---- Gold horizontal rule ---- */
+.gold-rule {
+  width: 2.5rem;
+  height: 1px;
+  background-color: #C9A96E;
+  opacity: 0.55;
+}
+
+/* ---- CTA Button ---- */
+.btn-primary {
+  display: inline-block;
+  background-color: #C9A96E;
+  color: #0F0E0D;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+  border: none;
+}
+.btn-primary:hover  { background-color: #E8C98A; transform: translateY(-1px); }
+.btn-primary:active { transform: translateY(0); }
+
+/* ---- Nav links (desktop + mobile share same base style) ---- */
+.nav-link,
+.nav-link-mobile {
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #9B9590;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-link:hover,
+.nav-link-mobile:hover { color: #F0EDE8; }
+
+/* ---- Navbar scroll state ---- */
+#navbar.scrolled {
+  background-color: rgba(15, 14, 13, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid #2A2520;
+}
+
+/* ---- Mobile hamburger animation ---- */
+.ham-line {
+  display: block;
+  width: 1.5rem;
+  height: 1px;
+  background-color: #F0EDE8;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+#nav-toggle.open .ham-line:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+#nav-toggle.open .ham-line:nth-child(2) { opacity: 0; }
+#nav-toggle.open .ham-line:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+/* ---- Hero background ---- */
+.hero-bg {
+  /*
+    TO USE A REAL PHOTO: replace these two lines with your image:
+    background-image: linear-gradient(to bottom, rgba(15,14,13,0.65) 0%, rgba(15,14,13,0.9) 100%), url('hero-marble-falls-texas.jpg');
+    background-size: cover;
+    background-position: center;
+  */
+  background:
+    linear-gradient(to bottom, rgba(15,14,13,0.5) 0%, rgba(15,14,13,0.7) 60%, rgba(15,14,13,1) 100%),
+    radial-gradient(ellipse at 50% 20%, #2E2518 0%, #0F0E0D 65%);
+}
+
+/* ---- Pillar cards ---- */
+.pillar-card {
+  padding: 2.75rem 2.5rem;
+  transition: background-color 0.2s;
+}
+.pillar-card:hover { background-color: #1D1B18 !important; }
+
+.pillar-num {
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #C9A96E;
+  margin-bottom: 1.25rem;
+}
+
+/* ---- Bullet list ---- */
+.bullet-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.bullet-dash {
+  color: #C9A96E;
+  flex-shrink: 0;
+  margin-top: 0.05rem;
+  font-weight: 300;
+}
+
+/* ---- Include / amenity tiles ---- */
+.include-item,
+.amenity-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  border: 1px solid #2A2520;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #F0EDE8;
+}
+.include-item::before,
+.amenity-item::before {
+  content: '—';
+  color: #C9A96E;
+  flex-shrink: 0;
+}
+.amenity-item { color: #9B9590; background-color: #0F0E0D; }
+
+/* ---- "Not a bootcamp" badges ---- */
+.not-badge {
+  flex: 1;
+  border: 1px solid #2A2520;
+  padding: 0.875rem 1.25rem;
+  color: #9B9590;
+  font-size: 0.875rem;
+}
+
+/* ---- Property highlight block ---- */
+.property-block {
+  border: 1px solid #3D3428;
+  padding: 1.5rem 2rem;
+  background-color: #1D1B18;
+}
+
+/* ---- Facilitator avatar placeholder ---- */
+.bio-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 1px solid #2A2520;
+  background-color: #1D1B18;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* Real photo class (uncomment in HTML when ready) */
+.bio-photo {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #2A2520;
+}
+
+/* ---- Investment card ---- */
+.investment-card {
+  border: 1px solid #3D3428;
+  padding: 3rem 2rem;
+  background-color: #161412;
+}
+
+/* ---- Application form ---- */
+.form-label {
+  display: block;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #9B9590;
+  margin-bottom: 0.5rem;
+}
+
+.form-input {
+  display: block;
+  width: 100%;
+  background-color: #161412;
+  border: 1px solid #2A2520;
+  color: #F0EDE8;
+  padding: 0.875rem 1rem;
+  font-size: 0.875rem;
+  font-family: 'Inter', system-ui, sans-serif;
+  outline: none;
+  transition: border-color 0.2s;
+  -webkit-appearance: none;
+}
+.form-input::placeholder { color: #3A3630; }
+.form-input:focus        { border-color: #C9A96E; }
+.form-input.error        { border-color: #8B3A3A; }
+
+/* ---- Utility ---- */
+.hidden { display: none !important; }

@@ -1,0 +1,149 @@
+/* Google Fonts loaded in index.html via <link> for better LCP — no @import needed here */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { font-family: 'Jost', system-ui, sans-serif; }
+  body { background-color: #0F0E0D; color: #F0EDE8; }
+}
+
+@layer utilities {
+  .font-heading { font-family: 'Bodoni Moda', Georgia, serif; }
+  .font-body    { font-family: 'Jost', system-ui, sans-serif; }
+}
+
+/* Grain texture overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* Hero background */
+@keyframes drift {
+  0%   { transform: scale(1) translateY(0px); }
+  50%  { transform: scale(1.05) translateY(-10px); }
+  100% { transform: scale(1) translateY(0px); }
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(244,207,122,0.10), transparent 55%),
+    linear-gradient(160deg, #1c1917 0%, #141210 45%, #0c0a09 100%);
+  animation: drift 18s ease-in-out infinite;
+}
+
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.55;
+  mix-blend-mode: lighten;
+  filter: contrast(1.1) brightness(0.8);
+  pointer-events: none;
+}
+
+/* Property photo — stone castle at sunset, sits between base gradient and glow layers */
+.hero-photo {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center 42%;
+  opacity: 0.30;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-photo { opacity: 0.28; }
+}
+
+.hero-noise {
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      180deg,
+      rgba(255,255,255,0.025) 0px,
+      rgba(255,255,255,0.025) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+  opacity: 0.25;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* ── Cinematic hero glow ──────────────────────────────────────────────── */
+
+/* Primary glow: slow breathe — expands and fades in a long exhale */
+@keyframes glow-breathe {
+  0%, 100% { opacity: 1;    transform: scale(1); }
+  50%       { opacity: 0.45; transform: scale(1.22); }
+}
+
+/* Secondary glow: wanders off-center like a slow ember drift */
+@keyframes glow-wander {
+  0%   { opacity: 0.6;  transform: scale(1)    translate(0%,   0%); }
+  28%  { opacity: 1;    transform: scale(1.3)  translate(-5%,  8%); }
+  62%  { opacity: 0.75; transform: scale(1.12) translate( 6%, -5%); }
+  100% { opacity: 0.6;  transform: scale(1)    translate(0%,   0%); }
+}
+
+/* Core orb: centred at the top, breathes in/out */
+.hero-glow-primary {
+  position: absolute;
+  top: -15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width:  clamp(560px, 90vw, 1000px);
+  height: clamp(560px, 90vw, 1000px);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(244,207,122,0.14) 0%, rgba(201,150,80,0.04) 45%, transparent 68%);
+  pointer-events: none;
+  animation: glow-breathe 11s ease-in-out infinite;
+  will-change: opacity, transform;
+}
+
+/* Accent orb: slightly offset, slower cycle, different phase */
+.hero-glow-secondary {
+  position: absolute;
+  top: -8%;
+  left: 38%;
+  width:  clamp(360px, 60vw, 680px);
+  height: clamp(360px, 60vw, 680px);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(220,170,90,0.08) 0%, transparent 62%);
+  pointer-events: none;
+  animation: glow-wander 19s ease-in-out infinite;
+  animation-delay: -6s; /* stagger phase so they don't peak together */
+  will-change: opacity, transform;
+}
+
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .hero-glow-primary,
+  .hero-glow-secondary { animation: none; }
+}
+
+/* Gold shimmer on investment card border */
+@keyframes gold-shimmer {
+  0%   { opacity: 0.15; }
+  50%  { opacity: 0.4; }
+  100% { opacity: 0.15; }
+}
+
+.gold-shimmer-border {
+  animation: gold-shimmer 3s ease-in-out infinite;
+}
+
+/* Smooth scroll anchor offset for fixed nav */
+[id] { scroll-margin-top: 80px; }
