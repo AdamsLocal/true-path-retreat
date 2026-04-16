@@ -3,8 +3,9 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  // Netlify deploys to domain root — base is /
-  base: '/',
+  // GitHub Pages serves from /true-path-retreat/ (repo name)
+  // For Netlify/custom domain, change back to '/'
+  base: '/true-path-retreat/',
   build: {
     rollupOptions: {
       output: {
