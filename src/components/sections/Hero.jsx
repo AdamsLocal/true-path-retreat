@@ -33,15 +33,7 @@ export default function Hero() {
     >
       {/* 1. Dark gradient base */}
       <div className="hero-bg" aria-hidden="true" />
-      {/* 2. Property photo — stone castle at sunset, overlaid at low opacity for atmosphere */}
-      <div
-        className="hero-photo"
-        aria-hidden="true"
-        style={{
-          backgroundImage: `url(${import.meta.env.BASE_URL}images/true-path-retreat-stone-property-sunset-marble-falls-texas.webp)`,
-        }}
-      />
-      {/* 3. Cinematic glow layers — breathe and wander above the photo */}
+      {/* 2. Cinematic glow layers — breathe and wander above the base gradient, behind the logo */}
       <div className="hero-glow-primary"   aria-hidden="true" />
       <div className="hero-glow-secondary" aria-hidden="true" />
       {/* Background video — place hero.mp4 / hero.webm in public/ to activate */}

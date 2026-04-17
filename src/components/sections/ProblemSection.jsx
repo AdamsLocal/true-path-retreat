@@ -3,8 +3,16 @@ import GoldRule from '../GoldRule.jsx'
 
 export default function ProblemSection() {
   return (
-    <section id="problem" className="py-24 md:py-32 bg-surface px-6">
-      <div className="max-w-2xl mx-auto text-center">
+    <section id="problem" className="py-24 md:py-32 bg-surface px-6 overflow-hidden relative">
+      {/* Property photo — stone castle at sunset, atmospheric backdrop */}
+      <div
+        className="problem-photo"
+        aria-hidden="true"
+        style={{
+          backgroundImage: `url(${import.meta.env.BASE_URL}images/true-path-retreat-stone-property-sunset-marble-falls-texas.webp)`,
+        }}
+      />
+      <div className="max-w-2xl mx-auto text-center relative">
 
         <AnimatedSection>
           <p className="text-xs tracking-[0.25em] uppercase text-gold mb-5">The Reality</p>

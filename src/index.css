@@ -31,12 +31,14 @@ body::after {
   100% { transform: scale(1) translateY(0px); }
 }
 
+/* Masculine sky: cool steel-slate atmospheric glow at the top, grounded
+   in the same deep charcoal palette as the rest of the site. */
 .hero-bg {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at 50% 0%, rgba(244,207,122,0.10), transparent 55%),
-    linear-gradient(160deg, #1c1917 0%, #141210 45%, #0c0a09 100%);
+    radial-gradient(ellipse at 50% 0%, rgba(71,85,105,0.22), transparent 55%),
+    linear-gradient(160deg, #1a1d22 0%, #121416 45%, #0b0c0d 100%);
   animation: drift 18s ease-in-out infinite;
 }
 
@@ -52,18 +54,22 @@ body::after {
   pointer-events: none;
 }
 
-/* Property photo — stone castle at sunset, sits between base gradient and glow layers */
-.hero-photo {
+/* Property photo — stone castle at sunset, atmospheric backdrop in the
+   Problem section below the hero. Sits behind content at low opacity with
+   a vignette so text remains legible. */
+.problem-photo {
   position: absolute;
   inset: 0;
   background-size: cover;
   background-position: center 42%;
-  opacity: 0.30;
+  opacity: 0.22;
   pointer-events: none;
+  mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 85%);
+  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 85%);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-photo { opacity: 0.28; }
+  .problem-photo { opacity: 0.20; }
 }
 
 .hero-noise {
