@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { useShouldAnimate } from '../hooks/use-framer-motion-desktop-animation-enabled.js'
 
 const navLinks = [
   { label: 'Experience',   href: '#experience' },
@@ -11,7 +10,6 @@ const navLinks = [
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
-  const shouldAnimate           = useShouldAnimate()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80)
@@ -63,8 +61,8 @@ export default function Nav() {
           <motion.a
             href="#apply"
             className="text-xs tracking-[0.15em] uppercase px-7 py-3 border border-gold text-gold hover:text-bg hover:bg-gold transition-colors duration-200"
-            whileHover={shouldAnimate ? { scale: 1.03, boxShadow: '0 0 30px rgba(201,169,110,0.3)' } : {}}
-            whileTap={shouldAnimate ? { scale: 0.97 } : {}}
+            whileHover={{ scale: 1.03, boxShadow: '0 0 30px rgba(201,169,110,0.3)' }}
+            whileTap={{ scale: 0.97 }}
           >
             Apply Now
           </motion.a>

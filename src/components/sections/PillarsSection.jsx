@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import { useShouldAnimate } from '../../hooks/use-framer-motion-desktop-animation-enabled.js'
 import AnimatedSection from '../AnimatedSection.jsx'
 import GoldRule from '../GoldRule.jsx'
 
@@ -34,8 +33,6 @@ const cardVariants = {
 }
 
 export default function PillarsSection() {
-  const shouldAnimate = useShouldAnimate()
-
   return (
     <section id="pillars" className="py-24 md:py-32 bg-bg px-6">
       <div className="max-w-5xl mx-auto">
@@ -52,14 +49,11 @@ export default function PillarsSection() {
             <motion.div
               key={p.num}
               custom={i}
-              variants={shouldAnimate ? cardVariants : {}}
+              variants={cardVariants}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
-              whileHover={shouldAnimate ? {
-                background: 'rgba(255,255,255,0.04)',
-                transition: { duration: 0.2 },
-              } : {}}
+              whileHover={{ background: 'rgba(255,255,255,0.04)', transition: { duration: 0.2 } }}
               className="p-10 bg-bg transition-colors duration-200"
             >
               <p className="font-heading text-5xl font-light text-gold/20 mb-4">{p.num}</p>

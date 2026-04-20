@@ -31,14 +31,14 @@ body::after {
   100% { transform: scale(1) translateY(0px); }
 }
 
-/* Masculine sky: cool steel-slate atmospheric glow at the top, grounded
-   in the same deep charcoal palette as the rest of the site. */
+/* Cinematic hero sky: warm gold atmospheric haze at the top dissolves into
+   deep charcoal — gives the glow orbs a rich backdrop to shine through. */
 .hero-bg {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at 50% 0%, rgba(71,85,105,0.22), transparent 55%),
-    linear-gradient(160deg, #1a1d22 0%, #121416 45%, #0b0c0d 100%);
+    radial-gradient(ellipse at 50% 0%, rgba(244,207,122,0.13), transparent 55%),
+    linear-gradient(160deg, #1c1917 0%, #141210 45%, #0c0a09 100%);
   animation: drift 18s ease-in-out infinite;
 }
 
@@ -113,7 +113,7 @@ body::after {
   width:  clamp(560px, 90vw, 1000px);
   height: clamp(560px, 90vw, 1000px);
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(244,207,122,0.14) 0%, rgba(201,150,80,0.04) 45%, transparent 68%);
+  background: radial-gradient(circle, rgba(244,207,122,0.16) 0%, rgba(201,150,80,0.05) 45%, transparent 68%);
   pointer-events: none;
   animation: glow-breathe 11s ease-in-out infinite;
   will-change: opacity, transform;
@@ -127,17 +127,37 @@ body::after {
   width:  clamp(360px, 60vw, 680px);
   height: clamp(360px, 60vw, 680px);
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(220,170,90,0.08) 0%, transparent 62%);
+  background: radial-gradient(circle, rgba(220,170,90,0.09) 0%, transparent 62%);
   pointer-events: none;
   animation: glow-wander 19s ease-in-out infinite;
   animation-delay: -6s; /* stagger phase so they don't peak together */
   will-change: opacity, transform;
 }
 
+/* Light beam: slow diagonal sweep back and forth */
+@keyframes beam-sweep {
+  0%   { transform: rotate(12deg) translateX(-140%); opacity: 0.06; }
+  50%  { opacity: 0.10; }
+  100% { transform: rotate(12deg) translateX(260%);  opacity: 0.06; }
+}
+
+.hero-light-beam {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 28%;
+  background: linear-gradient(to right, transparent, rgba(244,207,122,0.06), transparent);
+  filter: blur(40px);
+  pointer-events: none;
+  animation: beam-sweep 22s linear infinite alternate;
+}
+
 /* Respect reduced-motion preference */
 @media (prefers-reduced-motion: reduce) {
   .hero-glow-primary,
-  .hero-glow-secondary { animation: none; }
+  .hero-glow-secondary,
+  .hero-light-beam { animation: none; }
 }
 
 /* Gold shimmer on investment card border */

@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import { useShouldAnimate } from '../../hooks/use-framer-motion-desktop-animation-enabled.js'
 import AnimatedSection from '../AnimatedSection.jsx'
 import GlassCard from '../GlassCard.jsx'
 import GoldRule from '../GoldRule.jsx'
@@ -26,7 +25,6 @@ const items = [
 ]
 
 export default function IncludedSection() {
-  const shouldAnimate = useShouldAnimate()
   return (
     <section id="included" className="py-24 md:py-32 bg-bg px-6">
       <div className="max-w-3xl mx-auto text-center">
@@ -40,13 +38,13 @@ export default function IncludedSection() {
 
         <motion.div
           className="grid sm:grid-cols-2 gap-3 text-left mb-12"
-          variants={shouldAnimate ? container : {}}
+          variants={container}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.15 }}
         >
           {items.map((item) => (
-            <motion.div key={item} variants={shouldAnimate ? cardVariant : {}}>
+            <motion.div key={item} variants={cardVariant}>
               <GlassCard variant="dark" className="px-5 py-4" hover={false}>
                 <div className="flex items-start gap-3">
                   <span className="text-gold mt-0.5 text-xs">✦</span>

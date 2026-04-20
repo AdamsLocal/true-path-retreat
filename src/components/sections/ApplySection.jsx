@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { useShouldAnimate } from '../../hooks/use-framer-motion-desktop-animation-enabled.js'
 import AnimatedSection from '../AnimatedSection.jsx'
 import GoldRule from '../GoldRule.jsx'
 
@@ -12,8 +11,6 @@ export default function ApplySection() {
   const [formData, setFormData]   = useState({
     name: '', email: '', phone: '', message: '', 'payment-plan': false,
   })
-  const shouldAnimate = useShouldAnimate()
-
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target
     setFormData((prev) => ({ ...prev, [name]: type === 'checkbox' ? checked : value }))
@@ -136,8 +133,8 @@ export default function ApplySection() {
               <motion.button
                 type="submit"
                 className="w-full text-sm tracking-[0.15em] uppercase px-12 py-4 border border-gold text-gold hover:text-bg hover:bg-gold transition-colors duration-200"
-                whileHover={shouldAnimate ? { scale: 1.03, boxShadow: '0 0 30px rgba(201,169,110,0.3)' } : {}}
-                whileTap={shouldAnimate ? { scale: 0.97 } : {}}
+                whileHover={{ scale: 1.03, boxShadow: '0 0 30px rgba(201,169,110,0.3)' }}
+                whileTap={{ scale: 0.97 }}
               >
                 Submit Application
               </motion.button>

@@ -1,7 +1,6 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import GoldRule from '../GoldRule.jsx'
-import { useShouldAnimate } from '../../hooks/use-framer-motion-desktop-animation-enabled.js'
 
 const stagger = {
   hidden: {},
@@ -19,8 +18,7 @@ const fadeIn = {
 }
 
 export default function Hero() {
-  const ref           = useRef(null)
-  const shouldAnimate = useShouldAnimate()
+  const ref = useRef(null)
 
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
   const yParallax = useTransform(scrollYProgress, [0, 1], ['0%', '25%'])
@@ -51,6 +49,14 @@ export default function Hero() {
       </video>
       {/* Scanline noise overlay */}
       <div className="hero-noise" aria-hidden="true" />
+      {/* Vignette — darkens edges for cinematic depth */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: 'radial-gradient(circle at center, transparent 35%, rgba(0,0,0,0.82) 100%)' }}
+        aria-hidden="true"
+      />
+      {/* Light beam sweep — pure CSS gold shimmer drifting across the frame */}
+      <div className="hero-light-beam" aria-hidden="true" />
       {/* Compass logo — large decorative background mark */}
       <motion.img
         src={`${import.meta.env.BASE_URL}images/true-path-compass-logo.webp`}
@@ -60,21 +66,21 @@ export default function Hero() {
         height={700}
         className="absolute pointer-events-none select-none"
         style={{ opacity: 0.17, width: 'clamp(420px, 72vw, 700px)', height: 'auto' }}
-        animate={shouldAnimate ? { rotate: 360 } : {}}
+        animate={{ rotate: 360 }}
         transition={{ duration: 120, repeat: Infinity, ease: 'linear' }}
       />
       <motion.div
-        style={shouldAnimate ? { y: yParallax } : {}}
+        style={{ y: yParallax }}
         className="relative max-w-3xl mx-auto md:z-10"
       >
         <motion.div
-          variants={shouldAnimate ? stagger : {}}
+          variants={stagger}
           initial="hidden"
           animate="visible"
         >
           {/* Eyebrow */}
           <motion.p
-            variants={shouldAnimate ? fadeIn : {}}
+            variants={fadeIn}
             className="text-xs tracking-[0.25em] uppercase text-muted mb-8"
           >
             Marble Falls, Texas &nbsp;·&nbsp; August 19–23, 2026
@@ -82,7 +88,7 @@ export default function Hero() {
 
           {/* H1 */}
           <motion.h1
-            variants={shouldAnimate ? fadeUp : {}}
+            variants={fadeUp}
             className="font-heading font-light leading-none text-tx mb-6"
             style={{ fontSize: 'clamp(3.5rem, 10vw, 7rem)' }}
           >
@@ -93,7 +99,7 @@ export default function Hero() {
 
           {/* Tagline */}
           <motion.p
-            variants={shouldAnimate ? fadeUp : {}}
+            variants={fadeUp}
             className="font-heading text-xl md:text-2xl font-light italic text-gold-light mb-3"
           >
             Find Your True North. Become Your True Self.
@@ -101,20 +107,20 @@ export default function Hero() {
 
           {/* Sub */}
           <motion.p
-            variants={shouldAnimate ? fadeUp : {}}
+            variants={fadeUp}
             className="text-xs tracking-[0.2em] uppercase text-muted mb-10"
           >
             A Men's Alignment Retreat
           </motion.p>
 
           {/* Gold rule */}
-          <motion.div variants={shouldAnimate ? fadeIn : {}}>
+          <motion.div variants={fadeIn}>
             <GoldRule className="mb-10" />
           </motion.div>
 
           {/* Badge */}
           <motion.p
-            variants={shouldAnimate ? fadeIn : {}}
+            variants={fadeIn}
             className="text-sm text-muted mb-10 tracking-wide"
           >
             Limited to 8 Men
@@ -122,14 +128,11 @@ export default function Hero() {
 
           {/* CTA */}
           <motion.a
-            variants={shouldAnimate ? fadeUp : {}}
+            variants={fadeUp}
             href="#apply"
             className="inline-block text-sm tracking-[0.15em] uppercase px-12 py-4 border border-gold text-gold hover:text-bg hover:bg-gold transition-colors duration-200"
-            whileHover={shouldAnimate ? {
-              scale: 1.03,
-              boxShadow: '0 0 30px rgba(201,169,110,0.3)',
-            } : {}}
-            whileTap={shouldAnimate ? { scale: 0.97 } : {}}
+            whileHover={{ scale: 1.03, boxShadow: '0 0 30px rgba(201,169,110,0.3)' }}
+            whileTap={{ scale: 0.97 }}
           >
             Apply for Your Spot
           </motion.a>

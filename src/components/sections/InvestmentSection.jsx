@@ -1,35 +1,29 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
-import { useShouldAnimate } from '../../hooks/use-framer-motion-desktop-animation-enabled.js'
 import AnimatedSection from '../AnimatedSection.jsx'
 import GoldRule from '../GoldRule.jsx'
 
 /** Count-down hook: animates from `from` to `to` when inView becomes true */
 function useCountDown(from, to, duration = 1500, inView = false) {
   const [count, setCount] = useState(from)
-  const shouldAnimate = useShouldAnimate()
 
   useEffect(() => {
     if (!inView) return
-    if (!shouldAnimate) { setCount(to); return }
-
     const start = performance.now()
     const step = (now) => {
       const elapsed = now - start
       const progress = Math.min(elapsed / duration, 1)
-      // ease-out cubic
       const eased = 1 - Math.pow(1 - progress, 3)
       setCount(Math.floor(from - eased * (from - to)))
       if (progress < 1) requestAnimationFrame(step)
     }
     requestAnimationFrame(step)
-  }, [inView, from, to, duration, shouldAnimate])
+  }, [inView, from, to, duration])
 
   return count
 }
 
 export default function InvestmentSection() {
-  const shouldAnimate = useShouldAnimate()
   const [inView, setInView] = useState(false)
   const cardRef = useRef(null)
 
@@ -67,7 +61,7 @@ export default function InvestmentSection() {
               backdropFilter: 'blur(20px)',
               WebkitBackdropFilter: 'blur(20px)',
             }}
-            whileHover={shouldAnimate ? { y: -4, transition: { duration: 0.25 } } : {}}
+            whileHover={{ y: -4, transition: { duration: 0.25 } }}
           >
             {/* Animated shimmer border overlay */}
             <div
@@ -93,8 +87,8 @@ export default function InvestmentSection() {
           <motion.a
             href="#apply"
             className="inline-block text-sm tracking-[0.15em] uppercase px-12 py-4 border border-gold text-gold hover:text-bg hover:bg-gold transition-colors duration-200"
-            whileHover={shouldAnimate ? { scale: 1.03, boxShadow: '0 0 30px rgba(201,169,110,0.3)' } : {}}
-            whileTap={shouldAnimate ? { scale: 0.97 } : {}}
+            whileHover={{ scale: 1.03, boxShadow: '0 0 30px rgba(201,169,110,0.3)' }}
+            whileTap={{ scale: 0.97 }}
           >
             Apply for Your Spot
           </motion.a>
