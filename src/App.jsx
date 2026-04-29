@@ -10,7 +10,9 @@ import IncludedSection from './components/sections/IncludedSection.jsx'
 import EnvironmentSection from './components/sections/EnvironmentSection.jsx'
 import OutcomesSection from './components/sections/OutcomesSection.jsx'
 import FacilitatorsSection from './components/sections/FacilitatorsSection.jsx'
+import BuyerQualificationSection from './components/sections/buyer-qualification-this-is-for-you-if-section.jsx'
 import InvestmentSection from './components/sections/InvestmentSection.jsx'
+import IntentionallySmallRetreatUrgencySection from './components/sections/intentionally-small-retreat-urgency-section.jsx'
 import ApplySection from './components/sections/ApplySection.jsx'
 
 export default function App() {
@@ -28,7 +30,9 @@ export default function App() {
         <EnvironmentSection />
         <OutcomesSection />
         <FacilitatorsSection />
+        <BuyerQualificationSection />
         <InvestmentSection />
+        <IntentionallySmallRetreatUrgencySection />
         <ApplySection />
       </main>
       <Footer />
