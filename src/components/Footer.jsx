@@ -29,18 +29,26 @@ export default function Footer() {
         © 2026 True Path Retreat. All rights reserved.
       </p>
 
-      {/* AdamsLocal credit — restrained, inline mark + skull glyph.
-          Centered on every breakpoint, single line via flex-wrap so the
-          logo never orphans from the wordmark on narrow viewports. */}
+      {/* AdamsLocal credit — restrained, cinematic. Two-tier opacity
+          hierarchy: prefix sits behind a veil, the brand cluster (skull +
+          mark + wordmark) reads slightly brighter so the eye lands there.
+          flex-wrap with justify-center keeps it centered without orphan
+          breaks; items-center holds skull, mark, and caps on one optical
+          line. Hover lifts every layer in sync. */}
       <a
         href="https://adamslocal.com"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Designed and built by AdamsLocal LLC"
-        className="group mt-5 inline-flex flex-wrap items-center justify-center gap-x-1.5 text-[11px] tracking-[0.05em] text-muted/50 hover:text-muted transition-colors duration-200"
+        className="group mt-5 inline-flex flex-wrap items-center justify-center gap-x-1.5 text-[11px] tracking-[0.05em] leading-none"
       >
-        <span>Designed &amp; Built by</span>
-        <span aria-hidden="true" className="text-[10px] leading-none">
+        <span className="text-muted/35 group-hover:text-muted/60 transition-colors duration-200">
+          Designed &amp; Built by
+        </span>
+        <span
+          aria-hidden="true"
+          className="opacity-70 group-hover:opacity-100 transition-opacity duration-200"
+        >
           ☠️
         </span>
         <img
@@ -50,9 +58,11 @@ export default function Footer() {
           height={14}
           loading="lazy"
           decoding="async"
-          className="h-3.5 w-3.5 opacity-70 group-hover:opacity-100 transition-opacity duration-200"
+          className="h-3.5 w-3.5 opacity-75 group-hover:opacity-100 transition-opacity duration-200"
         />
-        <span>AdamsLocal LLC</span>
+        <span className="text-muted/70 group-hover:text-muted transition-colors duration-200">
+          AdamsLocal LLC
+        </span>
       </a>
     </footer>
   )
