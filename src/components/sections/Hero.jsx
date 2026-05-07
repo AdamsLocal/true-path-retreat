@@ -57,15 +57,16 @@ export default function Hero() {
       />
       {/* Light beam sweep — pure CSS gold shimmer drifting across the frame */}
       <div className="hero-light-beam" aria-hidden="true" />
-      {/* Compass logo — large decorative background mark */}
+      {/* Compass logo — large decorative background mark. Shadow variant
+          carries a baked-in soft halo for added cinematic weight. */}
       <motion.img
-        src={`${import.meta.env.BASE_URL}images/true-path-compass-logo.webp`}
+        src={`${import.meta.env.BASE_URL}images/true-path-compass-logo-shadow.webp`}
         alt=""
         aria-hidden="true"
         width={700}
         height={700}
         className="absolute pointer-events-none select-none"
-        style={{ opacity: 0.17, width: 'clamp(420px, 72vw, 700px)', height: 'auto' }}
+        style={{ opacity: 0.28, width: 'clamp(420px, 72vw, 700px)', height: 'auto' }}
         animate={{ rotate: 360 }}
         transition={{ duration: 120, repeat: Infinity, ease: 'linear' }}
       />
