@@ -28,6 +28,32 @@ export default function Footer() {
       <p className="text-xs text-muted/40 mt-6">
         © 2026 True Path Retreat. All rights reserved.
       </p>
+
+      {/* AdamsLocal credit — restrained, inline mark + skull glyph.
+          Centered on every breakpoint, single line via flex-wrap so the
+          logo never orphans from the wordmark on narrow viewports. */}
+      <a
+        href="https://adamslocal.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Designed and built by AdamsLocal LLC"
+        className="group mt-5 inline-flex flex-wrap items-center justify-center gap-x-1.5 text-[11px] tracking-[0.05em] text-muted/50 hover:text-muted transition-colors duration-200"
+      >
+        <span>Designed &amp; Built by</span>
+        <span aria-hidden="true" className="text-[10px] leading-none">
+          ☠️
+        </span>
+        <img
+          src={`${import.meta.env.BASE_URL}images/adamslocal-icon.png`}
+          alt=""
+          width={14}
+          height={14}
+          loading="lazy"
+          decoding="async"
+          className="h-3.5 w-3.5 opacity-70 group-hover:opacity-100 transition-opacity duration-200"
+        />
+        <span>AdamsLocal LLC</span>
+      </a>
     </footer>
   )
 }
