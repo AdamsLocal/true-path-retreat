@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import GoldRule from './GoldRule.jsx'
+import AnimatedPrice from './animated-price-count-up-on-scroll-into-view.jsx'
 
 /**
  * Premium retreat package card. Two visual tiers:
@@ -11,7 +12,8 @@ import GoldRule from './GoldRule.jsx'
  *                    secondary tier so the price-anchor still pulls toward VIP.
  *
  * Both tiers share identical layout so package comparison is frictionless.
- * CTA opens Stripe checkout in a new tab so the landing page stays trusted.
+ * CTA opens the intro-call booking flow in a new tab so the landing page
+ * stays available behind it — the call is the gateway, not the checkout.
  */
 export default function RetreatPackageCard({
   featured = false,
@@ -20,7 +22,8 @@ export default function RetreatPackageCard({
   title,
   emphasis,
   description,
-  price,
+  amount,
+  startAmount,
   spotsLine,
   positioning,
   features,
@@ -90,9 +93,11 @@ export default function RetreatPackageCard({
         </p>
 
         <div className="flex items-baseline gap-2 mb-1">
-          <span className="font-heading text-5xl md:text-6xl text-tx leading-none">
-            {price}
-          </span>
+          <AnimatedPrice
+            amount={amount}
+            startAmount={startAmount}
+            className="font-heading text-5xl md:text-6xl text-tx leading-none tabular-nums"
+          />
           <span className="text-muted text-xs tracking-[0.15em] uppercase">
             USD
           </span>
@@ -125,8 +130,12 @@ export default function RetreatPackageCard({
         >
           {ctaLabel}
         </motion.a>
-        <p className="text-muted text-[11px] text-center mt-3 tracking-[0.05em]">
-          Secure checkout via Stripe
+        {/* Understated reassurance — softens commitment, signals seriousness
+            without selling. Muted gold, italic, generous line-height for clean
+            wrap on narrow viewports. */}
+        <p className="text-gold/60 text-[11px] italic text-center mt-4 leading-relaxed tracking-[0.02em] max-w-xs mx-auto">
+          Every attendee begins with a short intro call to ensure the retreat
+          is the right fit.
         </p>
       </div>
     </motion.div>

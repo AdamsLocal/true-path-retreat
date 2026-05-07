@@ -1,10 +1,11 @@
 import AnimatedSection from '../AnimatedSection.jsx'
 import RetreatPackageCard from '../retreat-package-card.jsx'
 
-// Stripe checkout URLs — direct links bypass form friction for ready buyers.
-// Both open in a new tab to keep this trusted page available behind them.
-const STRIPE_VIP_URL = 'https://buy.stripe.com/7sY8wPalU6yZ2ph9MCgfu0F'
-const STRIPE_FULL_URL = 'https://buy.stripe.com/9B6cN5alUcXn9RJgb0gfu0G'
+// Every attendee starts with an intro call to confirm fit — the call is the
+// gateway, not the checkout. Both CTAs open Calendly in a new tab so this
+// trusted page stays available behind the booking flow.
+const INTRO_CALL_URL =
+  'https://calendly.com/fulfillmentfinders/true-path-intro-call'
 
 const vipFeatures = [
   'Private Bedroom',
@@ -83,30 +84,32 @@ export default function InvestmentSection() {
             title="Full"
             emphasis="Transformation"
             description="For the man who wants deeper support, private space, and personalized breakthrough work."
-            price="$4,497"
+            amount={4497}
+            startAmount={7997}
             spotsLine="Only 4 VIP spots available"
             positioning="Your own bedroom. Direct coaching access. Continued momentum after you return home — because real transformation happens after the retreat ends."
             features={vipFeatures}
-            ctaLabel="Reserve Your VIP Spot"
-            ctaHref={STRIPE_VIP_URL}
+            ctaLabel="Book a Call"
+            ctaHref={INTRO_CALL_URL}
           />
           <RetreatPackageCard
             eyebrow="Full Experience — Shared Room"
             title="Full"
             emphasis="Experience"
             description="For the man who wants the full retreat experience and brotherhood — with shared accommodations and full access."
-            price="$3,497"
+            amount={3497}
+            startAmount={5997}
             spotsLine="Only 4 Full Experience spots available"
             positioning="You still do the work. You still get the breakthrough. You just do it shoulder-to-shoulder with other men walking the same path."
             features={fullFeatures}
-            ctaLabel="Reserve Your Spot"
-            ctaHref={STRIPE_FULL_URL}
+            ctaLabel="Book a Call"
+            ctaHref={INTRO_CALL_URL}
           />
         </div>
 
         <AnimatedSection className="text-center mt-14">
           <p className="text-muted text-sm">
-            Payment plans available. Questions before reserving?{' '}
+            Questions before booking your call?{' '}
             <a
               href="#apply"
               className="text-gold hover:text-gold-light transition-colors"

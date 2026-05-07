@@ -9,11 +9,11 @@ const inputClass =
 export default function ApplySection() {
   const [submitted, setSubmitted] = useState(false)
   const [formData, setFormData]   = useState({
-    name: '', email: '', phone: '', message: '', 'payment-plan': false,
+    name: '', email: '', phone: '', message: '',
   })
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target
-    setFormData((prev) => ({ ...prev, [name]: type === 'checkbox' ? checked : value }))
+    const { name, value } = e.target
+    setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
   const handleSubmit = async (e) => {
@@ -21,7 +21,6 @@ export default function ApplySection() {
     const body = new URLSearchParams({
       'form-name': 'true-path-retreat-application',
       ...formData,
-      'payment-plan': formData['payment-plan'] ? 'yes' : '',
     })
     try {
       await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body.toString() })
@@ -117,17 +116,6 @@ export default function ApplySection() {
                   value={formData.message} onChange={handleChange}
                   className={`${inputClass} resize-none`}
                 />
-              </div>
-
-              <div className="flex items-start gap-3">
-                <input
-                  type="checkbox" id="payment-plan" name="payment-plan"
-                  checked={formData['payment-plan']} onChange={handleChange}
-                  className="mt-[3px] w-4 h-4 accent-gold cursor-pointer flex-shrink-0"
-                />
-                <label htmlFor="payment-plan" className="text-muted text-sm cursor-pointer leading-relaxed">
-                  I'm interested in a payment plan option
-                </label>
               </div>
 
               <motion.button
