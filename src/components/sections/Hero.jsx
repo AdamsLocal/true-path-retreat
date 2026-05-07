@@ -66,7 +66,7 @@ export default function Hero() {
         width={700}
         height={700}
         className="absolute pointer-events-none select-none"
-        style={{ opacity: 0.28, width: 'clamp(420px, 72vw, 700px)', height: 'auto' }}
+        style={{ opacity: 0.18, width: 'clamp(420px, 72vw, 700px)', height: 'auto' }}
         animate={{ rotate: 360 }}
         transition={{ duration: 120, repeat: Infinity, ease: 'linear' }}
       />
