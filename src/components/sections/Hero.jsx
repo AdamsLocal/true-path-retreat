@@ -66,14 +66,7 @@ export default function Hero() {
         width={700}
         height={700}
         className="absolute pointer-events-none select-none"
-        style={{
-          opacity: 0.22,
-          width: 'clamp(420px, 72vw, 700px)',
-          height: 'auto',
-          // Belt-and-suspenders halo: the asset's baked shadow is faint at low
-          // opacity, so a soft gold drop-shadow guarantees the halo reads.
-          filter: 'drop-shadow(0 0 70px rgba(201, 169, 110, 0.22))',
-        }}
+        style={{ opacity: 0.24, width: 'clamp(420px, 72vw, 700px)', height: 'auto' }}
         animate={{ rotate: 360 }}
         transition={{ duration: 120, repeat: Infinity, ease: 'linear' }}
       />
